@@ -3,8 +3,8 @@ Websocket de l'application de Bérengère
 
 # Installation
 
-Pour les dépendances : npm i 
-Pour démarrer le serveur : npm start
+- Pour les dépendances : npm i 
+- Pour démarrer le serveur : npm start
 
 # La base de donnée nécessaire
 
