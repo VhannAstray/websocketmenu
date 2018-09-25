@@ -12,7 +12,7 @@ var Recette = {
      */
     getRecetteById(id, callback) {
         return db.query(
-           "SELECT id, title, begin, end FROM Recettes WHERE id=?",
+           "SELECT * FROM Recettes WHERE id=?",
            [id],
            callback
         );
@@ -74,6 +74,17 @@ var Recette = {
             [id],
             callback
         );
+    },
+
+     /**
+     * Retourne le dernier Recette créé
+     */
+    getRecetteByDate: function(Recette, callback) {
+        return db.query(
+            "SELECT titre FROM recettes r, menu m, planning p WHERE recettes_id = r.id AND planning_id = p.id AND p.date = ?",
+            [Recette.date],
+            callback
+        )
     }
 };
 
