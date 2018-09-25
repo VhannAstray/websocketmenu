@@ -268,3 +268,9 @@ Méthode en DELETE :
 127.0.0.1:3000/recettes/5
 
 ici ça supprime la recette avec l'id numéro 5.
+
+- Liste de tous les types de plats :
+127.0.0.1:3000/typesPlats/
+
+- Type de plats avec un paramètre en ID :
+127.0.0.1:3000/typesPlats/1
