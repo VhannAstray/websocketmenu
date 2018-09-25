@@ -94,6 +94,16 @@ var Recette = {
             [date],
             callback
         )
+    },
+    /**
+     * Retourne les recettes d'un planning donné
+     */
+    getRecetteByPlanning: function(id, callback) {
+        return db.query(
+            "SELECT titre FROM recettes r, menu m, planning p WHERE recettes_id = r.id AND planning_id = p.id AND p.id = ?",
+            [id],
+            callback
+        )
     }
 };
 

@@ -48,6 +48,22 @@ router.get(
     }
 );
 
+router.get(
+    '/idPlanning/:id?',
+    function(request, response, next) {
+        if (request.params.id) {
+            // Un paramètre est passé
+            Recette.getRecetteByPlanning(request.params.id, function(err, rows) {
+                if (err) {
+                    response.json(err);
+                } else {
+                    response.json(rows);
+                }
+            });
+        }
+    }
+);
+
 /**
  * POST : ajouter une ligne de Recette
  */
