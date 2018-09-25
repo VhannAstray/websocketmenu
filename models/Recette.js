@@ -40,11 +40,20 @@ var Recette = {
      * @name addRecette(Recette, callback)
      * Ajoute un Recette dans la table concernée
      */
-    addRecette: function(Recette, callback) {
+    addRecette: function(recette, callback) {
         console.log('Add ' + JSON.stringify(Recette));
         return db.query(
-            "INSERT INTO Recettes (title, begin, end) VALUES (?,?,?);",
-            [Recette.title, Recette.begin, Recette.end],
+            "INSERT INTO Recettes (titre, instructions, temps_preparation, temps_cuisson, nb_personnes, utilisateurs_id, types_id)"+
+            "VALUES (?,?,?,?,?,?,?);",
+            [
+                recette.titre,
+                recette.instructions,
+                recette.temps_preparation,
+                recette.temps_cuisson,
+                recette.nb_personnes,
+                recette.utilisateurs_id,
+                recette.types_id
+            ],
             callback
         );
     },
@@ -55,10 +64,10 @@ var Recette = {
      * @param {Recette} Recette 
      * @param {*} callback 
      */
-    updateRecette(id, Recette, callback) {
+    updateRecette(id, recette, callback) {
         return db.query(
-            "UPDATE Recettes SET title=?,begin=?,end=? WHERE id=?;",
-            [Recette.title, Recette.begin, Recette.end, id],
+            "UPDATE Recettes SET titre=? WHERE id=?;",
+            [recette.titre, id],
             callback
         )
     },
@@ -77,12 +86,12 @@ var Recette = {
     },
 
      /**
-     * Retourne le dernier Recette créé
+     * Retourne les recettes à une date donnée
      */
-    getRecetteByDate: function(Recette, callback) {
+    getRecetteByDate: function(date, callback) {
         return db.query(
             "SELECT titre FROM recettes r, menu m, planning p WHERE recettes_id = r.id AND planning_id = p.id AND p.date = ?",
-            [Recette.date],
+            [date],
             callback
         )
     }

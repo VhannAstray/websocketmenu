@@ -24,6 +24,22 @@ router.get(
             Recette.getAllRecettes(function(err, rows) {
                 if (err) {
                     response.json(err);
+                } else {                    
+                    response.json(rows);
+                }
+            });
+        }
+    }
+);
+
+router.get(
+    '/date/:date?',
+    function(request, response, next) {
+        if (request.params.date) {
+            // Un paramètre est passé
+            Recette.getRecetteByDate(request.params.date, function(err, rows) {
+                if (err) {
+                    response.json(err);
                 } else {
                     response.json(rows);
                 }
@@ -52,6 +68,9 @@ router.post('', function(request, response, next) {
     });
 });
 
+/**
+ * PUT : Mise à jour d'une recette
+ */
 router.put('/:id', function(request, response, next) {
     Recette.updateRecette(request.params.id, request.body, function(err, row) {
         if (err) {
