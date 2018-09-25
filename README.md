@@ -274,3 +274,25 @@ ici ça supprime la recette avec l'id numéro 5.
 
 - Type de plats avec un paramètre en ID :
 127.0.0.1:3000/typesPlats/1
+
+- On peut ajouter une recette sur un planning :
+127.0.0.1:3000/menuPlanning/
+en Méthode POST
+avec un objet de type JSON :
+{
+    "planning_id": 1,
+    "recettes_id": 6,
+    "is_midi": 1
+}
+(is_midi est là pour indiquer si c'est une recette du midi ou du soir, 1 = midi, 0 = soir)
+
+- Suppression d'une recette attribuer au planning
+127.0.0.1:3000/menuPlanning/
+en méthode DELETE
+avec un objet de type JSON : 
+{
+  "planning_id": 1,
+  "recettes_id": 6,
+  "is_midi": 1
+}
+il faut obligatoirement fournir les 3 paramètres sinon risque de delete des recettes du planning de manière indésirable.

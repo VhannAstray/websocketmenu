@@ -11,6 +11,7 @@ var recettesRouter = require('./routes/recettes');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var typesRouteur = require('./routes/types');
+var menuPlanning = require('./routes/ajoutMenuPlanning');
 
 var app = express();
 
@@ -26,10 +27,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// Etablissement du pathing de l'URI
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/recettes', recettesRouter);
 app.use('/typesPlats', typesRouteur);
+app.use('/menuPlanning', menuPlanning);
 
 
 app.use(function(request, response, next) {

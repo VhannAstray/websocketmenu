@@ -41,9 +41,9 @@ var Recette = {
      * Ajoute un Recette dans la table concernée
      */
     addRecette: function(recette, callback) {
-        console.log('Add ' + JSON.stringify(Recette));
+        console.log('Add ' + JSON.stringify(recette));
         return db.query(
-            "INSERT INTO Recettes (titre, instructions, temps_preparation, temps_cuisson, nb_personnes, utilisateurs_id, types_id)"+
+            "INSERT INTO recettes (titre, instructions, temps_preparation, temps_cuisson, nb_personnes, utilisateurs_id, types_id)"+
             "VALUES (?,?,?,?,?,?,?);",
             [
                 recette.titre,
@@ -66,7 +66,7 @@ var Recette = {
      */
     updateRecette(id, recette, callback) {
         return db.query(
-            "UPDATE Recettes SET titre=? WHERE id=?;",
+            "UPDATE recettes SET titre=? WHERE id=?;",
             [recette.titre, id],
             callback
         )
@@ -75,11 +75,11 @@ var Recette = {
     /**
      * @name deleteRecette(int id, callback)
      * @param {*} id 
-     * @param {*} callback 
+     * @param {*} callback  
      */
     deleteRecette(id, callback) {
         return db.query(
-            "DELETE FROM Recettes WHERE id=?;",
+            "DELETE FROM recettes WHERE id=?;",
             [id],
             callback
         );
