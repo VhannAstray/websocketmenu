@@ -7,10 +7,10 @@ var logger = require('morgan');
 
 // Requirements pour API
 var cors = require('cors');
-var Recettes = require('./routes/recettes');
-
+var recettesRouter = require('./routes/recettes');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var typesRouteur = require('./routes/types');
 
 var app = express();
 
@@ -28,7 +28,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/recettes', Recettes);
+app.use('/recettes', recettesRouter);
+app.use('/typesPlats', typesRouteur);
 
 
 app.use(function(request, response, next) {
