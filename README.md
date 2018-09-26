@@ -236,6 +236,9 @@ Le websocket renvoi que des tableaux JSON :
 - Liste des recettes pour une date donnée :
 127.0.0.1:3000/recettes/date/2018-09-26
 
+- Liste des recettes pour un planning donnée :
+127.0.0.1:3000/recettes/idPlanning/1
+
 - Renvoi la recette par id :
 127.0.0.1:3000/recettes/2
 
