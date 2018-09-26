@@ -12,7 +12,9 @@ var Recette = {
      */
     getRecetteById(id, callback) {
         return db.query(
-           "SELECT * FROM Recettes WHERE id=?",
+           "SELECT id, types_id as typeMeal, titre, instructions,"+
+           " temps_preparation as tempsPreparation, temps_cuisson as tempsCuisson, "+
+           "nb_personnes as nombrePersonnes FROM Recettes WHERE id=?",
            [id],
            callback
         );
@@ -23,7 +25,9 @@ var Recette = {
      * Exécute une requête pour récupérer la totalité des Recettes
      */
     getAllRecettes: function(callback) {
-        return db.query("SELECT * FROM recettes ORDER BY titre", callback);
+        return db.query("SELECT id, types_id as typeMeal, titre, instructions,"+
+        " temps_preparation as tempsPreparation, temps_cuisson as tempsCuisson, "+
+        "nb_personnes as nombrePersonnes FROM Recettes ORDER BY titre", callback);
     },
 
     /**
@@ -31,7 +35,9 @@ var Recette = {
      */
     getLastRecette: function(callback) {
         return db.query(
-            "SELECT * FROM Recettes ORDER BY id DESC LIMIT 0,1;",
+            "SELECT id, types_id as typeMeal, titre, instructions,"+
+            " temps_preparation as tempsPreparation, temps_cuisson as tempsCuisson, "+
+            "nb_personnes as nombrePersonnes FROM Recettes ORDER BY id DESC LIMIT 0,1;",
             callback
         )
     },
@@ -48,11 +54,11 @@ var Recette = {
             [
                 recette.titre,
                 recette.instructions,
-                recette.temps_preparation,
-                recette.temps_cuisson,
-                recette.nb_personnes,
-                recette.utilisateurs_id,
-                recette.types_id
+                recette.tempsPreparation,
+                recette.tempsCuisson,
+                recette.nombrePersonnes,
+                0,
+                recette.typeMeal
             ],
             callback
         );
