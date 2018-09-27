@@ -108,7 +108,7 @@ var Recette = {
         return db.query(
             "SELECT titre,instructions,temps_preparation as tempsPreparation, "+
             " temps_cuisson as tempsCuisson, nb_personnes as nombrePersonnes,"+
-            "types_id as typeMeal, m.is_midi FROM recettes r, menu m, planning p WHERE recettes_id = r.id AND planning_id = p.id AND p.id = ?",
+            "types_id as typeMeal, m.is_midi as isMidi FROM recettes r, menu m, planning p WHERE recettes_id = r.id AND planning_id = p.id AND p.id = ?",
             [id],
             callback
         )
