@@ -12,9 +12,7 @@ var Recette = {
      */
     getRecetteById(id, callback) {
         return db.query(
-           "SELECT id, types_id as typeMeal, titre, instructions,"+
-           " temps_preparation as tempsPreparation, temps_cuisson as tempsCuisson, "+
-           "nb_personnes as nombrePersonnes FROM Recettes WHERE id=?",
+           "SELECT r.id AS id, types_id AS typeMeal, titre, instructions, temps_preparation AS tempsPreparation, temps_cuisson AS tempsCuisson, nb_personnes AS nombrePersonnes, p.url AS photos FROM recettes r LEFT JOIN photos p ON r.id = p.recettes_id WHERE r.id=?",
            [id],
            callback
         );
@@ -25,9 +23,7 @@ var Recette = {
      * Exécute une requête pour récupérer la totalité des Recettes
      */
     getAllRecettes: function(callback) {
-        return db.query("SELECT id, types_id as typeMeal, titre, instructions,"+
-        " temps_preparation as tempsPreparation, temps_cuisson as tempsCuisson, "+
-        "nb_personnes as nombrePersonnes FROM Recettes ORDER BY titre", callback);
+        return db.query("SELECT r.id AS id, types_id AS typeMeal, titre, instructions, temps_preparation AS tempsPreparation, temps_cuisson AS tempsCuisson, nb_personnes AS nombrePersonnes, p.url AS photos FROM recettes r LEFT JOIN photos p ON r.id = p.recettes_id", callback);
     },
 
     /**
