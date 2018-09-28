@@ -26,8 +26,8 @@ router.post('', function(request, response, next) {
     });
 });
 
-router.delete('', function(request, response, next) {
-    menu.deleteMenuPlanning(request.body, function(err, count) {
+router.delete('/:idP/:idR/:isM', function(request, response, next) {
+    menu.deleteMenuPlanning(request.params, function(err, count) {
         if (err) {
             response.json(err);
         } else {

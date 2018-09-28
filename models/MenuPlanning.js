@@ -74,15 +74,17 @@ var MenuPlanning = {
      * @param {*} callback 
      */
     deleteMenuPlanning(menuplanning, callback) {
+        console.log("Affichage du delete");
+        console.log(menuplanning);        
         return db.query(
             "DELETE FROM menu WHERE planning_id=? AND recettes_id=? AND is_midi=?;",
             [
-                menuplanning.planning_id,
-                menuplanning.recettes_id,
-                menuplanning.is_midi
+                menuplanning.idP,
+                menuplanning.idR,
+                menuplanning.isM
             ],
             callback
-        );
+        );        
     },
 
      /**
